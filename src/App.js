@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import "./homepage.component";
+import HomePage from './homepage.component';
 function App() {
   return (
     <div className="App">
-      <h1>Hello Naveen</h1>
+      <HomePage></HomePage>
     </div>
   );
 }
