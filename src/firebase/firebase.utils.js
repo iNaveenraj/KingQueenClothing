@@ -3,14 +3,14 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const Config = {
-    apiKey: "AIzaSyAgfRwl67ihCdCQAdeercrXlP0_W8BnESQ",
-    authDomain: "crwn-db-7bacc.firebaseapp.com",
-    projectId: "crwn-db-7bacc",
-    storageBucket: "crwn-db-7bacc.appspot.com",
-    messagingSenderId: "565029152393",
-    appId: "1:565029152393:web:be3e8c2c00b50851484858",
-    measurementId: "G-LB9SR0V8DY"
-  };
+  apiKey: "AIzaSyBGKzUMKDPRs0Q04uAyvB8lEpefakMMxwg",
+  authDomain: "kingqueendb-7a95a.firebaseapp.com",
+  projectId: "kingqueendb-7a95a",
+  storageBucket: "kingqueendb-7a95a.appspot.com",
+  messagingSenderId: "940025719947",
+  appId: "1:940025719947:web:3d772e9e79ca3ec66cb88e",
+  measurementId: "G-PWGPEHHR03"
+};
 
   export const CreateUserProfileDocument = async (userAuth, additonalDate) =>{
     if(!userAuth) return;
@@ -18,6 +18,8 @@ const Config = {
     console.log(userAuth.uid);
     var userRef =  firestore.doc(`users/${userAuth.uid }`);
     var shapshot = await userRef.get();
+    console.log(userAuth.uid);
+
     if(!shapshot.exists){
       const {displayName, email} = userAuth;
       const createdAt= new Date();

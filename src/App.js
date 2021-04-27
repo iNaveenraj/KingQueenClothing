@@ -16,9 +16,23 @@ class App extends React.Component{
   unSubscirbeUser = null;
   
   componentDidMount(){
-     this.unSubscirbeUser = auth.onAuthStateChanged(async user=>{         // -> this is method always listen to publisher and trigger when there is change in the sign in state 
+     this.unSubscirbeUser = auth.onAuthStateChanged(async userAuth=>{         // -> this is method always listen to publisher and trigger when there is change in the sign in state 
         //console.log(user);              // --> user object holds complete information about the current user signed in
-        CreateUserProfileDocument(user);
+        if(userAuth){
+          var userRef = await CreateUserProfileDocument(userAuth);
+          userRef.onSnapshot((snapshot) =>{
+            console.log(snapshot);
+            this.setState({
+              CurrentUser :{
+                id : snapshot.id,
+                ...snapshot.data() 
+              }
+            });
+          })
+        }else{
+          this.setState({CurrentUser: null});
+        }
+      
        // this.setState({Currentuser:user})
     });
   }
