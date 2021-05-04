@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom' ;
+import  store from './redux/store';
+
 
 // Required for Redux Support 
 
 import {Provider} from 'react-redux';
 
 ReactDOM.render(
-  <Provider>
+  <Provider store ={store}>
     <BrowserRouter>
       <App/>
     </BrowserRouter>
