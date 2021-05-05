@@ -1,0 +1,37 @@
+Redux
+-------
+# Setting up Redux
+    * Installing Required Packages 
+              yarn add redux redux-logger react-redux  
+    * Add Redux Related code need to be in separate folder under src 
+    * root.reducer.js is the root reducer 
+    * user.readucer.js is the reducer of the user which holds the following method
+
+        const userReducer = (state = INITIAL_STATE, action) => {                  // State is current state, 
+            switch(action.type){                                                  //Action holds type (type of the action ) and payload (data to be modified) 
+                case 'SET_CURRENT_USER':
+                                         return{
+                                                  ...state,
+                                                  currentUser : action.payload
+                                                }
+                 default : return state;
+             }
+        }
+
+        user.action.js --> holds the function to modify user action object 
+
+    * Root Reducer have combineReducers that holds all the reducer 
+    * Creating Store 
+        --> Create a separate file called store.js 
+        --> We have import createStore, applyMiddleware function from redux, logger from redux-logger and rootReducer
+        --> we have to convert logger to array and pass it to applyMiddleware function & result to  createStore function along with rootReducer  
+
+            import {createStore, applyMiddleware  } from "redux";
+            import logger from 'redux-logger';
+            import rootReducer from "./root-reducer";
+                const middlewares = [logger];
+                const store = createStore(rootReducer, applyMiddleware(...middlewares));
+                export default store;
+
+    * At Index.js we have wrap <App> Componenet with <Proiver> pass store to it 
+         
